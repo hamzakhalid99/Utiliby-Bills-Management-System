@@ -12,7 +12,8 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
 		
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-		<link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
   <body>
 		<?php session_start() ?>
@@ -24,15 +25,12 @@
               <p class="font-weight-lighter" style="font-size: 30px; text-align: center;"><?php echo $_SESSION['username'] ?></p>
               <hr style="border-width: 2px;border-color:#AAAAAA ;">
 	          <li>
-	              <a href="#">Add Service</a>
+	              <a href="add_util.php"> Add Utility </a>
 	          </li>
              <li>
-              <a href="#">Add Complaint</a>
+              <a href="#"> View & Update Utility </a>
             </li>
-	          <li>
-              <a href="#">Contact</a>
-            </li>
-            </ul>
+          </ul>
             <!-- <select name="cars" id="cars">
               <option selected disabled hidden> Settings </option>
               <option value="volvo">Volvo</option>
@@ -73,12 +71,20 @@
                     <a href="../"> <i class="fa fa-sign-out"></i> Sign Out &nbsp; &nbsp; </a>
                 </li>
                 <li>
-                  <a href=""> <i class="fa fa-cog"></i> Settings &nbsp; &nbsp; </a>
+                  <a href=""> <i id = "set-cog" class="fa fa-cog"></i> Settings &nbsp; &nbsp; </a>
                 </li>
               </ul>
             </div>
           </div>
         </nav>
+
+      <!-- 
+        <script>
+          $("#set-cog").hover(function () {
+            console.log("Hover");
+          });
+        </script>
+      -->
 
         <div class="container-fluid">
           <div class="row">
