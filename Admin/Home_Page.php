@@ -1,3 +1,7 @@
+<?php 
+  // Hello. How are you?
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
