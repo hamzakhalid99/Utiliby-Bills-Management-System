@@ -28,7 +28,7 @@
 	              <a href="add_util.php"> Add Utility </a>
 	          </li>
              <li>
-              <a href="#"> View & Update Utility </a>
+              <a href="view_update.php"> View & Update Utility </a>
             </li>
           </ul>
             <!-- <select name="cars" id="cars">
