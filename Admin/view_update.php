@@ -14,13 +14,13 @@
 </body>
 <table border="2">
   <tr>
-    <th>User id</th>
-    <td>Connection type</td>
-    <td>Utility name</td>
-    <td>Fixed montly price</td>
-    <td>Unit price</td>
-    <td>Update</td>
-    <td>Delete</td>
+    <th>Utility id</th>
+    <th>Connection type</th>
+    <th>Utility name</th>
+    <th>Fixed montly price</th>
+    <th>Unit price</th>
+    <th>Update</th>
+    <th>Delete</th>
   </tr>
 
 <?php 
