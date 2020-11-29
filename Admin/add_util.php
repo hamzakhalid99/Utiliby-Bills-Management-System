@@ -1,3 +1,6 @@
+<?php 
+    include "generic_layout.php";
+?>
 <!DOCTYPE html>
 <html lang = "en">
 <head>
@@ -21,8 +24,8 @@
                 <option> Commercial </option>
                 <option> Industrial </option>
             </select> <br>
-            <input type = "file" name = "image"> <br>
-            <button type = "submit" name = "send_form"> Submit </button>
+            <input style = "text-align: center; " type = "file" name = "image"> <br> <br>
+            <button class = "btn btn-primary" type = "submit" name = "send_form"> Submit </button>
         </form>
     </div>
 </body>
@@ -35,26 +38,36 @@
         if (!empty($_POST["util_ID"]) && !empty($_POST["util_name"]) && !empty($_POST["util_mon_price"]) && !empty($_POST["util_uni_price"]) && !empty($_POST["options"]))
         {
             $id = $_POST["util_ID"];
-            $name = $_POST["util_name"];
-            $mon_price = $_POST["util_mon_price"];
-            $uni_price = $_POST["util_uni_price"];
-            $connection_type = $_POST["options"];
-            $image_temp = $_FILES["image"]["name"];
-            $image = $_FILES["image"]["name"];
-
-            move_uploaded_file($image, "pics/$image");
-
-            $write_query = "INSERT INTO Utilities(utility_id, connection_type, utility_name, fixed_monthly_price, unit_price, image)";
-            $write_query .= "VALUES('$id', '$connection_type', '$name', '$mon_price', '$uni_price', '$image')";
-            $write_query_result = mysqli_query($connect, $write_query);
-            
-            if (!$write_query_result)
+            $overlap_query = "SELECT * FROM Utilities WHERE utility_id = '$id'";
+            $result = mysqli_query($connect, $overlap_query);
+            $rows = mysqli_num_rows($result);
+            if ($rows > 1)
             {
-                echo (mysqli_error($connect));
-                die("<h2 style = 'color: red; text-align: center;'> ERR_WRITING_FAILED </h2>");
+                die("<h2 style = 'color: red; text-align: center;'> ERR_UTILITY_EXISTS </h2>");
             }
             else 
-                header("Location: Home_Page.php");
+            {
+                $name = $_POST["util_name"];
+                $mon_price = $_POST["util_mon_price"];
+                $uni_price = $_POST["util_uni_price"];
+                $connection_type = $_POST["options"];
+                $image_temp = $_FILES["image"]["name"];
+                $image = $_FILES["image"]["name"];
+
+                move_uploaded_file($image, "pics/$image");
+
+                $write_query = "INSERT INTO Utilities(utility_id, connection_type, utility_name, fixed_monthly_price, unit_price, image)";
+                $write_query .= "VALUES('$id', '$connection_type', '$name', '$mon_price', '$uni_price', '$image')";
+                $write_query_result = mysqli_query($connect, $write_query);
+                
+                if (!$write_query_result)
+                {
+                    die("<h2 style = 'color: red; text-align: center;'> ERR_WRITING_FAILED </h2>");
+                }
+                else 
+                    header("Location: Home_Page.php");
+                }
+            
         }
         else 
             die("<h2 style = 'color: red; text-align: center;'> ERR_FORM_NOT_COMPLETELY_FILLED </h2>");
