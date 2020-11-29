@@ -89,20 +89,8 @@
               <th class="font-weight-light"><?php echo $_SESSION['name'] ?></th>
             </tr>
              <tr>
-              <th class="font-weight-light">EMAIL</th>
-              <th class="font-weight-light"><?php echo $_SESSION['email_id'] ?></th>
-            </tr>
-             <tr>
-              <th class="font-weight-light">CNIC</th>
-              <th class="font-weight-light"><?php echo $_SESSION['cnic'] ?></th>
-            </tr>
-             <tr>
               <th class="font-weight-light">ADDRESS</th>
               <th class="font-weight-light"><?php echo $_SESSION['address'] ?></th>
-            </tr>
-             <tr>
-              <th class="font-weight-light">CONTACT NO</th>
-              <th class="font-weight-light"><?php echo $_SESSION['contact_number'] ?></th>
             </tr>
              </tr>
              <tr>
@@ -110,7 +98,8 @@
               <th class="font-weight-light">Due Date (we will insert this after billing is finalised)</th>
             </tr>
           </table>
-      
+          
+        <h2 style="font-size: 15px;text-align:right;">In case of any discrepancies, please contact us at 0900-78601</h2>
 
         </div>
       </div>
