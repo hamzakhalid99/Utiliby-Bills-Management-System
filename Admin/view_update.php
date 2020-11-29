@@ -14,7 +14,7 @@
 </body>
 <table border="2">
   <tr>
-    <td>User id</td>
+    <th>User id</th>
     <td>Connection type</td>
     <td>Utility name</td>
     <td>Fixed montly price</td>

@@ -10,9 +10,7 @@
             if (!$database_connection)
                 die("ERR_CONNECTION_FAILED"); // Print a message and exit from the PHP script
                 
-            $create_query = "ALTER TABLE Utilities
-            ADD util_image BLOB NOT NULL
-            AFTER unit_price";
+            $create_query = ""; ////////////////////////////////// ADIL ADD YOUR QUERY HERE IN THE STRING... AND RUN THE FILE IN THE BROWSER ONLY ONCE
             $create_query_successful = mysqli_query($database_connection, $create_query);
             if ($create_query_successful)
                 echo "Created\n";
