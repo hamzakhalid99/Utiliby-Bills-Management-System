@@ -70,6 +70,17 @@ create table Utilities(
     PRIMARY KEY (utility_id, connection_type)
 );
 
+-- Later, we decided to add images for the utility as well
+
+ALTER TABLE Utilities
+ADD image TEXT NOT NULL -- image name will be stored as text
+AFTER unit_price
+
+-- Again, we decided to change the PK and set it to VARCHAR (255) from INT UNSIGNED
+
+ALTER TABLE Utilities
+MODIFY COLUMN utility_id VARCHAR(255)
+
 create table complaint(
     complaint_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     utility_id INT UNSIGNED,
