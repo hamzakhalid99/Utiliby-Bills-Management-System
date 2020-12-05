@@ -1,18 +1,7 @@
 <?php 
   include "generic_layout.php";
 ?>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <title> Admin / View and Update Utility </title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--===============================================================================================-->
-</head>
-
-<body>
-    <h2 style="text-align: center; "> View and Update Utility </h2>
+<h2 style="text-align: center; "> View & Update Utility </h2>
     <div style="text-align: center; width: 100%">
     </div>
 </body>

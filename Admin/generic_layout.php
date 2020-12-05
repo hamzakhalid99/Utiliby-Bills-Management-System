@@ -1,8 +1,4 @@
-<?php 
-  // Hello. How are you?
-?>
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -33,6 +29,9 @@
                     </li>
                     <li>
                         <a href="view_update.php"> View & Update Utility </a>
+                    </li>
+                    <li>
+                        <a href="view_approve.php"> View & Approve Requests </a>
                     </li>
                 </ul>
             </div>
