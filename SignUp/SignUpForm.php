@@ -19,10 +19,25 @@
             $obtained_contact = $_POST["user_contact"]; 
             $obtained_password = $_POST["user_password"];
             $obtained_role = $_POST["user_role"];
-            $approved_bit = 1;
+            $customer_connection_type = 0;
+            $approved_bit = 0;
+            
+            if ($obtained_role == "Residential" || $obtained_role == "Commercial" || $obtained_role == "Industrial")
+            {
+                $customer_connection_type = $obtained_role;
+                $obtained_role = "Customer";
+                $approved_bit = 1;
+                
+                $write_query = "INSERT INTO Customer(connection_type, total_discount, balance, black_list_status)";
+                $write_query .= "VALUES('$customer_connection_type', 0, 0, 0)";
+                $write_query_result = mysqli_query($connect, $write_query);
 
-            if ($obtained_role == "Admin" || $obtained_role == "Staff")
-                $approved_bit = 0;
+                if (!$write_query_result)
+                {
+                    echo mysqli_error($connect);
+                    die("<h2 style = 'color: red'; text-align: center;> ERR_CUSTOMER_TABLE_WRITING_FAILED </h2>");
+                }
+            }
             $write_query_result = 0;
 
             if(!preg_match ('/[^A-Za-z0-9]+/', $obtained_password))
@@ -52,7 +67,7 @@
                 }
                 if (!$write_query_result && !$rows_returned)
                     echo mysqli_error($connect);
-                else 
+                else
                     header("Location: ../index.html");
             }
         }
