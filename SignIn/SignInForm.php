@@ -29,11 +29,13 @@
                     $DB_address = $each_row["address"];
                     $DB_username = $each_row["username"];
                     $DB_approval = $each_row["approved_bit"];
+                    $DB_id = $each_row["user_id"];
                 }
 
                 if ($DB_hashed_password == $obtained_hashed_password)
                 {
                     session_start();
+                    $_SESSION["user_id"] = $DB_id;
                     $_SESSION["name"] = $DB_name;
                     $_SESSION["cnic"] = $DB_cnic;
                     $_SESSION["contact_number"] = $DB_contact;

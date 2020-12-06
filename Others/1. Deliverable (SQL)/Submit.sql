@@ -112,9 +112,9 @@ create table Registers_For(
 );
 
 create table invoice(
-    invoice_id INT UNSIGNED PRIMARY KEY,
+    invoice_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     user_id INT UNSIGNED,
-    utility_id INT UNSIGNED,
+    utility_id VARCHAR(255),
     bill_amount FLOAT,
     amount_received float,
     bill_due float,
@@ -122,7 +122,7 @@ create table invoice(
     date_of_payment DATE,
     FOREIGN KEY (utility_id) REFERENCES Utilities (utility_id) ON DELETE SET NULL,
     FOREIGN KEY (user_id) REFERENCES User (user_id) ON DELETE SET NULL
-);
+);"
 
 create table Invoice_Payments(
     invoice_id INT UNSIGNED,

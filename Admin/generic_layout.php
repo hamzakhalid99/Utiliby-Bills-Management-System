@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <?php session_start() ?>
+    <?php session_start(); include "../DB_Connection/database_connection.php"; ?>
     <div class="wrapper d-flex align-items-stretch">
         <nav id="sidebar" class="bg-dark">
             <div class="p-4 pt-5">
@@ -58,7 +58,7 @@
                                 <a href="../"> <i class="fa fa-sign-out"></i> Sign Out &nbsp; &nbsp; </a>
                             </li>
                             <li>
-                                <a href=""> <i id="set-cog" class="fa fa-cog"></i> Settings &nbsp; &nbsp; </a>
+                                <a href="change_password.php"> <i id="set-cog" class="fa fa-cog"></i> Change Password &nbsp; &nbsp; </a>
                             </li>
                         </ul>
                     </div>
