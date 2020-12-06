@@ -16,7 +16,7 @@
         <th>Delete</th>
     </tr>
 
-    <?php 
+<?php 
 include "../DB_Connection/database_connection.php";
 $sql = "SELECT * FROM Utilities";
 $result =mysqli_query($connect,$sql);

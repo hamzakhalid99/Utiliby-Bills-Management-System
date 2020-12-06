@@ -1,5 +1,5 @@
 <?php
-    include "generic_layout.php";
+    #include "generic_layout.php";
     include "../DB_Connection/database_connection.php";
 
     $id = $_GET['id']; // get id through query string
@@ -16,7 +16,7 @@
 
         if ($edit) {
             mysqli_close($connect);
-            header("Location: view_update.php"); // redirects to all records page
+            header("Location:view_update.php"); // redirects to all records page
             exit;
         } else {
             echo "Error updating record"; // display error message if not updated;

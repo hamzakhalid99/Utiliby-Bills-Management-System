@@ -33,6 +33,9 @@
                     <li>
                         <a href="view_approve.php"> View & Approve Requests </a>
                     </li>
+                    <li>
+                        <a href="viewbill.php"> View & Update Bills </a>
+                    </li>
                 </ul>
             </div>
         </nav>
