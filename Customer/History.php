@@ -83,11 +83,13 @@
           <tr>
             <th class='font-weight-light'>Invoice ID</th>
             <th class='font-weight-light'>Bill Ammount</th>
+            <th class='font-weight-light'>Units Consumed</th>
             <th class='font-weight-light'>Amount Recieved</th>
             <th class='font-weight-light'>Due</th>
             <th class='font-weight-light'>Status</th>
             <th class='font-weight-light'>Generated</th>
             <th class='font-weight-light'>Date Of Payment</th>
+
           </tr>
         </thead>
         <tbody>
@@ -105,18 +107,24 @@
               $status = $one_row["bill_status"];
               $gen_date = $one_row["bill_generation_date"];
               $pay_date = $one_row["date_of_payment"];
+              $query2 = "SELECT * FROM registers_for WHERE registers_for.user_id='".$user_id."' AND registers_for.utility_id='".$utility_id."';";
+              $tuples2 = mysqli_query($connect,$query2);
+              $units_consumed = 0;
+              while($one_row2 = mysqli_fetch_assoc($tuples2))
+              {
+                $units_consumed =  $one_row2["units_consumed"];
+              }
               echo 
               "<tr>
               <th class='font-weight-light'>".$invoice_id."</th>
               <th class='font-weight-light'>".$bill_amount."</th>
+              <th class='font-weight-light'>".$units_consumed."</th>
               <th class='font-weight-light'>".$recieved."</th>
               <th class='font-weight-light'>".$due."</th>
               <th class='font-weight-light'>".$status."</th>
               <th class='font-weight-light'>".$gen_date."</th>
               <th class='font-weight-light'>".$pay_date."</th>
               </tr>";
-
-
             } 
           ?>
         </tbody>
