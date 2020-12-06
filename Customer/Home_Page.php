@@ -1,7 +1,8 @@
+<?php include "../DB_Connection/database_connection.php"; ?>
 <!doctype html>
 <html lang="en">
   <head>
-  	<title>Sidebar 01</title>
+  	<title>Home</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -13,9 +14,9 @@
   <body>
 		<?php 
       session_start();
-      if (!isset($_SESSION['cnic']))
+      if (!isset($_SESSION['logged_in']))
       {
-        header("Location: ../index.html");
+        header("Location: /DB/index.html");
 
       }
     ?>
@@ -27,9 +28,12 @@
               <p class="font-weight-lighter" style="font-size: 30px; text-align: center;"><?php echo $_SESSION['username'] ?></p>
               <hr style="border-width: 2px;border-color:#AAAAAA ;">
 	          <li>
-	              <a href="#">Add Service</a>
+	              <a href="Add_Utility.php">Add Service</a>
 	          </li>
-             <li>
+            <li>
+                <a href="Remove_Utility.php">Remove Service</a>
+            </li>
+            <li>
               <a href="#">Add Complaint</a>
             </li>
 	          <li>
@@ -72,13 +76,20 @@
             </div>
           </div>
         </nav>
-
+        <?php
+          $utility_id = $_GET["utility_id"];
+          $user_id = $_SESSION['user_id'];
+          $query="SELECT balance FROM Customer Where user_id='".$user_id."';";
+          $tuples = mysqli_query($connect,$query); 
+          $one_row = mysqli_fetch_assoc($tuples);
+          $balance = $one_row["balance"];
+        ?> 
         <div class="container-fluid">
           <div class="row">
             <h2 style="font-size: 50px">MY ACCOUNT</h2>
             <div class="container" style="float: right;">
               <h2 style="font-size: 20px;text-align:right;">BALANCE</h2>
-              <h2 style="font-size: 30px;text-align:right;">Unlimited</h2>
+              <h2 style="font-size: 30px;text-align:right;">Rs <?php echo $balance; ?></h2>
             </div>
           </div>
           <hr style="border-width: 2px;">
@@ -112,21 +123,34 @@
         <hr style="border-width: 2px;">
         <div class="container" style="padding-top: 50px">
           <div class='row justify-content-center'>
-            <a href = "#">
-              <div class='col-sm-5 custom-column-spacing'>
-                <div class="container bg-dark custom-image-circle" style=" background-image: url(pics/drop.svg);"></div>
-              </div>
-            </a>
-            <a href = "#">
-              <div class='col-sm-5 custom-column-spacing'>
-                <div class="container bg-dark custom-image-circle" style=" background-image: url(pics/flash.svg);"></div>
-              </div>
-            </a>
-           <a href = "#">
-              <div class='col-sm-5 custom-column-spacing'>
-                <div class="container bg-dark custom-image-circle" style=" background-image: url(pics/flash.svg);"></div>
-              </div>
-            </a>
+            <?php 
+              $user_id = $_SESSION['user_id'];
+              $query = "SELECT Utilities.utility_name, Utilities.image, Utilities.utility_id
+                        FROM Registers_For INNER JOIN Utilities ON Utilities.utility_id=Registers_For.utility_id 
+                        WHERE Registers_For.user_id=$user_id;";
+              $query_result = mysqli_query($connect, $query);
+              $count = mysqli_num_rows($query_result);
+              if ($count== 0)
+              {
+                echo '<h2 class="mb-4" id="title">You Have Not Subscribed To Any Service yet</h2>';
+              }
+              else
+              {
+                for ($i = 0;$i < $count;$i++)
+                {
+
+                  $tuples = mysqli_fetch_assoc($query_result);
+                  $path = $tuples['image'];
+                  $util_name = $tuples['utility_name'];
+                  $id = $tuples["utility_id"];
+                   echo "<a href='Utility_Home_page.php?utility_id=".$id."'><div class='col-sm-5 custom-column-spacing'><div class='container bg-dark custom-image-circle' style=' background-image: url(pics/" . $path . ");'></div></div></a>";
+
+                }
+
+              }
+              
+              
+              ?>
           </div>
         </div>
       </div>

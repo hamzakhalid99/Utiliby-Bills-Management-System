@@ -39,6 +39,9 @@
                 <a href="#">Add Service</a>
             </li>
              <li>
+                <a href="Remove_Utility.php">Remove Service</a>
+            </li>
+             <li>
               <a href="#">Add Complaint</a>
             </li>
             <li>
@@ -100,49 +103,45 @@
               $package = $_GET["package"];
               $id = $_GET["id"];
               $user_id = $_SESSION['user_id'];
-                $new_query = "INSERT INTO Registers_For(utility_id, user_id, connection_type, units_consumed)";
-                $new_query .= "VALUES('$id', '$user_id', '$package', '0');";
-                $query_result = mysqli_query($connect, $new_query);
-                if ($query_result)
-                {
-                  echo "<h2 style='font-size:60px;'>ThankYou For Subscribing!</h2>";
 
-                }
-                else
-                {
-                   echo "<h2  style='font-size:60px;'>You Have Already Subscribed For This Utility</h2>";
-                }
+              $amount = "SELECT Utilities.fixed_monthly_price, Utilities.unit_price FROM Utilities WHERE Utilities.utility_id='".$id."';";
+              $tuples =  mysqli_fetch_assoc(mysqli_query($connect, $amount));
+              $bill_amount = $tuples['fixed_monthly_price'];
 
-                // echo "<a href = 'New_Utility.php?package=$util_package'><div class='col-sm-5 custom-column-spacing'><div class='container bg-dark custom-image-circle' style='font-size: 20px;'>$util_package</div></div></a>";
-              
-              ?>
+              $new_query = "INSERT INTO Registers_For(utility_id, user_id, connection_type, units_consumed, utility_balance, due_date)";
+              $new_query .= "VALUES('$id', '$user_id', '$package', 0, -$bill_amount, DATE_ADD(now(), INTERVAL 1 MONTH));";
+              $query_result = mysqli_query($connect, $new_query);
 
-             <!-- <a href = "Select_Utility.php">
-              <div class='col-sm-5 custom-column-spacing'>
-                <div class="container bg-dark custom-image-circle" style=" background-image: url(pics/drop.svg);"></div>
-              </div>
-            </a>
-            <a onclick="func1();" href="#">
-              <div class='col-sm-5 custom-column-spacing'>
-                <div class="container bg-dark custom-image-circle" style=" background-image: url(pics/flash.svg);"></div>
-              </div>
-            </a>
-           <a href = "#">
-              <div class='col-sm-5 custom-column-spacing'>
-                <div class="container bg-dark custom-image-circle" style=" background-image: url(pics/flash.svg);"></div>
-              </div>
-            </a> -->
+              if ($query_result)
+              {
+                echo "<h2 style='font-size:60px;'>ThankYou For Subscribing!</h2>";
+                $bill_query = "INSERT INTO invoice(user_id, utility_id, bill_amount, amount_received, bill_due, bill_status, bill_generation_date, date_of_payment)";
+                $bill_query .= "VALUES($user_id, '$id', $bill_amount, 0, $bill_amount, 1, now(), NULL);";
+                $bill_result = mysqli_query($connect, $bill_query);
+
+                $query2 = "SELECT balance FROM Customer
+                WHERE user_id='".$user_id."';";
+                $update2 = mysqli_query($connect, $query2);
+                $update2 = mysqli_fetch_assoc($update2);
+                $balance = $update2['balance'];
+                $new_balance = $balance - $bill_amount;
+                $balance_query = "UPDATE Customer SET balance='".$new_balance."' WHERE user_id='".$user_id."';";
+                $update2 = mysqli_query($connect, $balance_query);
+              }
+              else
+              {
+                 echo "<h2  style='font-size:60px;'>You Have Already Subscribed For This Utility</h2>";
+              }
+            
+            ?>
           </div>
           <br>
           <br>
           <br>
-          <?php
-          // echo "dsdssd" . $new_utility;
-          $path = $new_utility ."_Page.php";
-          echo '<form action="'.$path.'">
+          <form method='get' action="Utility_Home_page.php?utility_id=EC">
+          <input type="hidden" name="utility_id" value=<?php echo "'".$id."'" ?>>
           <button type = "submit" style = "text-align: center;font-size: 30px;" class="btn btn-primary">Go To Utility Home_Page</button>
-          </form>'
-          ?>
+          </form>
         </div>
       </div>
     </div>
