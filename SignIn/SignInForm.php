@@ -42,6 +42,7 @@
                     $_SESSION["email_id"] = $DB_email;
                     $_SESSION["address"] = $DB_address;
                     $_SESSION["username"] = $DB_username;
+                    $_SESSION['logged_in'] = 1;
                     
                     if ($DB_role == 'Admin' && $DB_approval == 1)
                         header("Location: ../Admin/Home_Page.php");
