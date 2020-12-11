@@ -29,8 +29,11 @@
               <p class="font-weight-lighter" style="font-size: 30px; text-align: center;"><?php echo $_SESSION['username'] ?></p>
               <hr style="border-width: 2px;border-color:#AAAAAA ;">
 	          <li>
-	              <a href="#">Add Service</a>
+	              <a href="Add_Utility.php">Add Service</a>
 	          </li>
+             <li>
+                <a href="Remove_Utility.php">Remove Service</a>
+            </li>
              <li>
               <a href="#">Add Complaint</a>
             </li>
@@ -90,7 +93,7 @@
         <div class="container" style="padding-top: 50px">
           <div class='row justify-content-center'>
             <?php 
-              $query = "SELECT * FROM Utilities;";
+              $query = "SELECT DISTINCT utility_name, image FROM Utilities ;";
               $query_result = mysqli_query($connect, $query);
               $count = mysqli_num_rows($query_result);
               

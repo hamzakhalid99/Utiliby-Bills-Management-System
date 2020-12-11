@@ -16,6 +16,7 @@
 
     <script>
       function func1(x=4){
+      // window.alert(x);
       document.getElementsByClassName("circles").style.display = "none";
       }
     </script>
@@ -35,7 +36,7 @@
               <p class="font-weight-lighter" style="font-size: 30px; text-align: center;"><?php echo $_SESSION['username'] ?></p>
               <hr style="border-width: 2px;border-color:#AAAAAA ;">
             <li>
-                <a href="Add_Utility.php">Add Service</a>
+                <a href="#">Add Service</a>
             </li>
              <li>
                 <a href="Remove_Utility.php">Remove Service</a>
@@ -95,29 +96,17 @@
           <hr style="border-width: 2px;">
         </div>
       
-
-        <h2 class="mb-4" id="title">Select Package</h2>
-        <hr style="border-width: 2px;">
-        <div class="container" style="padding-top: 50px">
+        <div class="container" style="padding-top: 100px; text-align: center">
           <div class='row justify-content-center'>
-            <?php 
-              $new_utility = $_GET["utility"];
-              $query = "SELECT Utilities.utility_id, Utilities.connection_type
-              FROM Utilities 
-              WHERE Utilities.utility_name='".$new_utility."';";
-              $query_result = mysqli_query($connect, $query);
-              $count = mysqli_num_rows($query_result);
-              for ($i = 0;$i < $count;$i++)
-              {
-
-                $tuples = mysqli_fetch_assoc($query_result);
-                $util_package = $tuples['connection_type'];
-                $id = $tuples['utility_id'];
-                echo "<a href = 'New_Utility.php?package=$util_package&id=$id&utility=$new_utility'><div class='col-sm-5 custom-column-spacing'><div class='container bg-dark custom-image-circle' style='font-size: 20px;'>$util_package</div></div></a>";
-              }
-              
-              ?>
+           
           </div>
+          <br>
+          <br>
+          <br>
+          <form method='get' action="Utility_Home_page.php?utility_id=EC">
+          <input type="hidden" name="utility_id" value=<?php echo "'".$id."'" ?>>
+          <button type = "submit" style = "text-align: center;font-size: 30px;" class="btn btn-primary">Go To Utility Home_Page</button>
+          </form>
         </div>
       </div>
     </div>

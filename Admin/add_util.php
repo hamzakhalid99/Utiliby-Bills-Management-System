@@ -11,23 +11,51 @@
 </head>
 
 <body>
-    <h2 style = "text-align: center; "> Add New Utility </h2>
-    <div style = "text-align: center; width: 100%">
-        <form method = "post" enctype="multipart/form-data">
-            <input type = "text" placeholder = "Utility ID" name = "util_ID"> <br>
-            <input type = "text" placeholder = "Utility Name" name = "util_name"> <br>
-            <input type = "text" placeholder = "Monthly Price" name = "util_mon_price"> <br>
-            <input type = "text" placeholder = "Unit Price" name = "util_uni_price"> <br>
-            <select name = "options">
-                <option selected disabled value hidden = "connection_1"> Choose Connection Type </option>
-                <option> Residential </option>
-                <option> Commercial </option>
-                <option> Industrial </option>
-            </select> <br>
-            <input style = "text-align: center; " type = "file" name = "image"> <br> <br>
-            <button class = "btn btn-primary" type = "submit" name = "send_form"> Submit </button>
-        </form>
+    <div class="container-fluid">
+    <div class="row">
+        <h2 style="text-align: center; ">Add New Utility</h2>
     </div>
+    <hr style="border-width: 2px;">
+    <br>
+        <form method = "post" enctype="multipart/form-data">
+            <div class="form-row">
+                <div class="form-group col">
+                    <input class="form-control form-control-lg" type = "text" placeholder = "Utility ID" name = "util_ID"> 
+                </div>
+                <div class="form-group col">
+                    <input class="form-control form-control-lg" type = "text" placeholder = "Utility Name" name = "util_name">
+                </div>
+            </div>
+             <label style="font-size: 20px;">Enter Prices</label>
+            <div class="form-row">  
+                <div class="form-group col">      
+                    <input class="form-control form-control-lg" type = "text" placeholder = "Monthly Price" name = "util_mon_price">
+                </div>
+                <div class="form-group col">
+                    <input class="form-control form-control-lg" type = "text" placeholder = "Unit Price" name = "util_uni_price">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col">
+                <select class="form-control form-control-lg" name = "options">
+                    <option selected disabled value hidden = "connection_1"> Choose Connection Type </option>
+                    <option> Residential </option>
+                    <option> Commercial </option>
+                    <option> Industrial </option>
+                </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col">
+                    <div class="custom-file form-control-lg">
+                    <input  class = "custom-file-input" type = "file" name = "image" id="image">
+                    <label class="custom-file-label" for="image">Choose logo file</label>
+                    </div>
+                </div>
+
+            </div>
+            <button class = "btn btn-primary" style="font-size: 20px; text-align: center;"type = "submit" name = "send_form"> Submit </button>
+        </form>
 </body>
 </html>
 
@@ -73,3 +101,7 @@
             die("<h2 style = 'color: red; text-align: center;'> ERR_FORM_NOT_COMPLETELY_FILLED </h2>");
     }
 ?>
+<script src="js/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>

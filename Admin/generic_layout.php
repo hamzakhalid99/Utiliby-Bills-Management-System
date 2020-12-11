@@ -41,6 +41,18 @@
                     <li>
                         <a href="view_approve.php"> View & Approve Requests </a>
                     </li>
+                    <li>
+                        <a href="viewbill.php"> View & Update Bills </a>
+                    </li>
+                    <li>
+                        <a href="transactions.php"> View Transactions </a>
+                    </li>
+                    <li>
+                        <a href="chronos.php"> Chronos </a>
+                    </li>
+                    <li>
+                        <a href="unpaid.php"> OverDue Bills </a>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -73,10 +85,11 @@
                 </div>
             </nav>
             <div class="container-fluid">
-                <div style = "text-align: center">
-                    <h2 style="font-size: 40px"> Admin -> <?php echo $_SESSION["name"]?> </h2>
+                <div class="row">
+                    <h2 style="text-align: center; font-size:40px; "> Admin Page </h2>
                 </div>
-                <div class = "my-auto">
+            <hr style="border-width: 2px;">
+            </div>
                 
                 <!-- PUT YOUR STFF HERE ... -->
                 <!-- THIS MEANS THAT EVERYTHING IN ALL THE FILES SHOULD BE PUT HERE ONCE THIS FILE IS INCLUDED -->

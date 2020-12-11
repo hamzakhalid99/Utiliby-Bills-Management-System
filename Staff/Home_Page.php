@@ -20,7 +20,7 @@
               <p class="font-weight-lighter" style="font-size: 30px; text-align: center;"><?php echo $_SESSION['username'] ?></p>
               <hr style="border-width: 2px;border-color:#AAAAAA ;">
 	          <li>
-	              <a href="#">Add Service</a>
+	              <a href="view_bill.php"> View Bills </a>
 	          </li>
              <li>
               <a href="#">Add Complaint</a>
