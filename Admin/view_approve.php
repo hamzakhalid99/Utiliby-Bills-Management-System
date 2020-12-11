@@ -2,8 +2,13 @@
     include "generic_layout.php";
     include "../DB_Connection/database_connection.php";
 ?>
-    <h2 style="text-align: center; "> View & Approve Requests </h2>
-    <table border = "2" style = "text-align: center; ">
+    <div class="container-fluid">
+    <div class="row">
+        <h2 style="text-align: center; "> View & Accept Requests</h2>
+    </div>
+    <hr style="border-width: 2px;">
+    <table class="table" style = "text-align: center; ">
+    <thead class="thead-dark">
     <tr>
         <th> Name </th>
         <th> Username </th>
@@ -12,6 +17,7 @@
         <th> Role </th>
         <th> Approve </th>
     </tr>
+</thead>
 <?php 
 
     $sql = "SELECT * FROM User WHERE approved_bit = 0";

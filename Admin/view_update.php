@@ -1,11 +1,15 @@
 <?php 
   include "generic_layout.php";
 ?>
-<h2 style="text-align: center; "> View & Update Utility </h2>
-    <div style="text-align: center; width: 100%">
+<div class="container-fluid">
+    <div class="row">
+        <h2 style="text-align: center; "> View & Update Utility</h2>
     </div>
+<hr style="border-width: 2px;">
+</div>
 </body>
-<table border = "2" style = "text-align: center; ">
+ <table class="table" style = "text-align: center; ">
+<thead class="thead-dark">
     <tr>
         <th>Utility id</th>
         <th>Connection type</th>
@@ -15,7 +19,8 @@
         <th>Update</th>
         <th>Delete</th>
     </tr>
-
+</thead>
+</tbody>
 <?php 
 include "../DB_Connection/database_connection.php";
 $sql = "SELECT * FROM Utilities";
@@ -35,6 +40,7 @@ while($data = mysqli_fetch_array($result))
     <?php
 }
 ?>
+</tbody>
 </table>
 <!-- very critical lines writeen down below. Do not interfere with the divs -->
 </div>
