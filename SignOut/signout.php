@@ -1,5 +1,6 @@
 <?php 
     session_start();
+    $_SESSION["user_id"] =
     $_SESSION["name"] = 
     $_SESSION["cnic"] = 
     $_SESSION["contact_number"] = 

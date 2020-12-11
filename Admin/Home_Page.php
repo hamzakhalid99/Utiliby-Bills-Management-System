@@ -1,5 +1,5 @@
 <?php 
-  include "generic_layout.php";
+    include "generic_layout.php";
 ?>
 <table class="table" style="font-size: 18px;">
     <tr>

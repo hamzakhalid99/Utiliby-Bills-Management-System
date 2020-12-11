@@ -6,7 +6,7 @@
 
 <div>
     <form style = "text-align: center; " method = "post">
-        <input type = "password" name = "old_pass" placeholder = "Confirm Old Password"> <br> <br>
+        <input autofocus type = "password" name = "old_pass" placeholder = "Confirm Old Password"> <br> <br>
         <input type = "password" name = "new_pass" placeholder = "Create New Password"> <br> <br>
         <input type = "password" name = "again_new_pass" placeholder = "Confirm New Password"> <br> <br>
         <input type = "submit" class = "btn btn-primary" name = "Process" value = "Change Password" >

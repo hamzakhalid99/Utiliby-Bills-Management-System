@@ -14,7 +14,15 @@
 </head>
 
 <body>
-    <?php session_start(); include "../DB_Connection/database_connection.php"; ?>
+    <?php
+        // ob_start();
+        include "../DB_Connection/database_connection.php";
+        session_start();
+        if (!isset($_SESSION["user_id"]))
+        {
+            header("Location: ../");
+        }
+    ?>
     <div class="wrapper d-flex align-items-stretch">
         <nav id="sidebar" class="bg-dark">
             <div class="p-4 pt-5">
