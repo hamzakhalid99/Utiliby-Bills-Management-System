@@ -1,8 +1,4 @@
-<?php 
-      include "../DB_Connection/database_connection.php";
-      include "../time/curr_time.php";
-
- ?>
+<?php include "../DB_Connection/database_connection.php"; ?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -102,42 +98,7 @@
       
         <div class="container" style="padding-top: 100px; text-align: center">
           <div class='row justify-content-center'>
-            <?php 
-              $new_utility = $_GET["utility"];
-              $package = $_GET["package"];
-              $id = $_GET["id"];
-              $user_id = $_SESSION['user_id'];
-
-              $amount = "SELECT Utilities.fixed_monthly_price, Utilities.unit_price FROM Utilities WHERE Utilities.utility_id='".$id."';";
-              $tuples =  mysqli_fetch_assoc(mysqli_query($connect, $amount));
-              $bill_amount = $tuples['fixed_monthly_price'];
-
-              $new_query = "INSERT INTO Registers_For(utility_id, user_id, connection_type, units_consumed, utility_balance, due_date)";
-              $new_query .= "VALUES('$id', '$user_id', '$package', 0, -$bill_amount, DATE_ADD('".$curr_time."', INTERVAL 1 MONTH));";
-              $query_result = mysqli_query($connect, $new_query);
-
-              if ($query_result)
-              {
-                echo "<h2 style='font-size:60px;'>ThankYou For Subscribing!</h2>";
-                $bill_query = "INSERT INTO invoice(user_id, utility_id, bill_amount, amount_received, bill_due, bill_status, bill_generation_date, date_of_payment)";
-                $bill_query .= "VALUES($user_id, '$id', $bill_amount, 0, $bill_amount, 1, '".$curr_time."', NULL);";
-                $bill_result = mysqli_query($connect, $bill_query);
-
-                $query2 = "SELECT balance FROM Customer
-                WHERE user_id='".$user_id."';";
-                $update2 = mysqli_query($connect, $query2);
-                $update2 = mysqli_fetch_assoc($update2);
-                $balance = $update2['balance'];
-                $new_balance = $balance - $bill_amount;
-                $balance_query = "UPDATE Customer SET balance='".$new_balance."' WHERE user_id='".$user_id."';";
-                $update2 = mysqli_query($connect, $balance_query);
-              }
-              else
-              {
-                 echo "<h2  style='font-size:60px;'>You Have Already Subscribed For This Utility</h2>";
-              }
-            
-            ?>
+           
           </div>
           <br>
           <br>

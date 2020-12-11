@@ -70,65 +70,71 @@
           </div>
         </nav>
 
+        <?php
+          $utility_id = $_GET["utility_id"];
+          $user_id = $_SESSION['user_id'];
+          $query="SELECT Utilities.utility_name
+          FROM Utilities
+          Where utility_id='".$utility_id."';";
+          $tuples = mysqli_query($connect,$query); 
+          while($one_row = mysqli_fetch_assoc($tuples))
+          {
+            $utility_name = $one_row["utility_name"];
+            } 
+        ?> 
         <div class="container-fluid">
           <div class="row">
-            <h2 style="font-size: 50px">Electricity</h2>
+            <h2 style="font-size: 50px"><?php echo $utility_name ?></h2>
           </div>
           <hr style="border-width: 2px;">
         </div>
         <h2 class="mb-4 ">Billing History</h2>
         <hr style="border-width: 2px;">
-        <table class="table" style="font-size: 20px;">
-          <thead class="thead-dark">
-          <tr>
-            <th class='font-weight-light'>Invoice ID</th>
-            <th class='font-weight-light'>Bill Ammount</th>
-            <th class='font-weight-light'>Units Consumed</th>
-            <th class='font-weight-light'>Amount Recieved</th>
-            <th class='font-weight-light'>Due</th>
-            <th class='font-weight-light'>Status</th>
-            <th class='font-weight-light'>Generated</th>
-            <th class='font-weight-light'>Date Of Payment</th>
+        <div class="container-fluid">
+          <table class="table" style="font-size: 20px">
+            <thead class="thead-dark">
+            <tr>
+              <th class='font-weight-light'>Invoice ID</th>
+              <th class='font-weight-light'>Bill Ammount</th>
+              <th class='font-weight-light'>Amount Recieved</th>
+              <th class='font-weight-light'>Due</th>
+              <th class='font-weight-light'>Status</th>
+              <th class='font-weight-light'>Generated</th>
+              <th class='font-weight-light'>Date Of Payment</th>
+            </tr>
+            </thead>
+            <tbody>
+              <?php
+                $user_id = $_SESSION['user_id'];
+                $utility_id = $_GET['utility_id'];
+                $query = "SELECT * FROM invoice WHERE invoice.user_id='".$user_id."' AND invoice.utility_id='".$utility_id."';";
+                $tuples = mysqli_query($connect,$query); 
+                while($one_row = mysqli_fetch_assoc($tuples))
+                {
+                  $invoice_id = $one_row["invoice_id"];
+                  $bill_amount = $one_row["bill_amount"];
+                  $recieved = $one_row["amount_received"];
+                  $due = $one_row["bill_due"];
+                  $status = $one_row["bill_status"];
+                  $gen_date = $one_row["bill_generation_date"];
+                  $pay_date = $one_row["date_of_payment"];
+                  echo 
+                  "<tr>
+                  <th class='font-weight-light'>".$invoice_id."</th>
+                  <th class='font-weight-light'>".$bill_amount."</th>
+                  <th class='font-weight-light'>".$recieved."</th>
+                  <th class='font-weight-light'>".$due."</th>
+                  <th class='font-weight-light'>".$status."</th>
+                  <th class='font-weight-light'>".$gen_date."</th>
+                  <th class='font-weight-light'>".$pay_date."</th>
+                  </tr>";
 
-          </tr>
-        </thead>
-        <tbody>
-          <?php
-            $user_id = $_SESSION['user_id'];
-            $utility_id = $_GET['utility_id'];
-            $query = "SELECT * FROM invoice WHERE invoice.user_id='".$user_id."' AND invoice.utility_id='".$utility_id."';";
-            $tuples = mysqli_query($connect,$query); 
-            while($one_row = mysqli_fetch_assoc($tuples))
-            {
-              $invoice_id = $one_row["invoice_id"];
-              $bill_amount = $one_row["bill_amount"];
-              $recieved = $one_row["amount_received"];
-              $due = $one_row["bill_due"];
-              $status = $one_row["bill_status"];
-              $gen_date = $one_row["bill_generation_date"];
-              $pay_date = $one_row["date_of_payment"];
-              $query2 = "SELECT * FROM registers_for WHERE registers_for.user_id='".$user_id."' AND registers_for.utility_id='".$utility_id."';";
-              $tuples2 = mysqli_query($connect,$query2);
-              $units_consumed = 0;
-              while($one_row2 = mysqli_fetch_assoc($tuples2))
-              {
-                $units_consumed =  $one_row2["units_consumed"];
-              }
-              echo 
-              "<tr>
-              <th class='font-weight-light'>".$invoice_id."</th>
-              <th class='font-weight-light'>".$bill_amount."</th>
-              <th class='font-weight-light'>".$units_consumed."</th>
-              <th class='font-weight-light'>".$recieved."</th>
-              <th class='font-weight-light'>".$due."</th>
-              <th class='font-weight-light'>".$status."</th>
-              <th class='font-weight-light'>".$gen_date."</th>
-              <th class='font-weight-light'>".$pay_date."</th>
-              </tr>";
-            } 
-          ?>
-        </tbody>
-        </table>
+
+                } 
+              ?>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
 

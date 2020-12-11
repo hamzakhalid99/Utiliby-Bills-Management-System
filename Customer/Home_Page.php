@@ -77,7 +77,6 @@
           </div>
         </nav>
         <?php
-          $utility_id = $_GET["utility_id"];
           $user_id = $_SESSION['user_id'];
           $query="SELECT balance FROM Customer Where user_id='".$user_id."';";
           $tuples = mysqli_query($connect,$query); 

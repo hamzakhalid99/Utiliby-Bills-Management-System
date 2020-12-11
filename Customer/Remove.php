@@ -16,16 +16,16 @@
 		$query_result = mysqli_query($connect, $query);
 		if ($query_result)
 		{
-			echo "removed";
+			header('Location: Home_Page.php');
 		}
 		else
 		{
-			echo "failed";
+			header('Location: Home_Page.php');
 		}
 	}
 	else 
 	{
-		echo ("you have to pay $balance");
+		header('Location: Pay_Bills.php?utility_id='.$utility_id.'');
 	}
 	
 ?>

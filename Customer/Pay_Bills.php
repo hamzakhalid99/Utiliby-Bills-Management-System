@@ -69,10 +69,21 @@
             </div>
           </div>
         </nav>
-
+         <?php
+          $utility_id = $_GET["utility_id"];
+          $user_id = $_SESSION['user_id'];
+          $query="SELECT Utilities.utility_name
+          FROM Utilities
+          Where utility_id='".$utility_id."';";
+          $tuples = mysqli_query($connect,$query); 
+          while($one_row = mysqli_fetch_assoc($tuples))
+          {
+            $utility_name = $one_row["utility_name"];
+            } 
+        ?> 
         <div class="container-fluid">
           <div class="row">
-            <h2 style="font-size: 50px">Electricity</h2>
+            <h2 style="font-size: 50px"><?php echo $utility_name ?></h2>
           </div>
           <hr style="border-width: 2px;">
         </div>
