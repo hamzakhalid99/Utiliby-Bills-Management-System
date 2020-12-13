@@ -46,7 +46,7 @@
                 <a href="Remove_Utility.php">Remove Service</a>
             </li>
              <li>
-              <a href="#">Add Complaint</a>
+              <a href="Add_Complaints.php">Add Complaint</a>
             </li>
             <li>
               <a href="#">Contact</a>
