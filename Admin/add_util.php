@@ -94,7 +94,7 @@
                 }
                 else 
                     header("Location: Home_Page.php");
-                }
+            }
             
         }
         else 

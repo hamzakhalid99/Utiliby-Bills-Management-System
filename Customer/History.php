@@ -17,7 +17,6 @@
       if (!isset($_SESSION['cnic']))
       {
         header("Location: ../index.html");
-
       }
     ?>
     <div class="wrapper d-flex align-items-stretch">

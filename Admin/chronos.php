@@ -89,7 +89,7 @@
 <?php
 	$bills_due = "SELECT User.user_id, Registers_For.utility_id, User.name, Registers_For.due_date, Registers_For.days_overdue 
                 FROM `Registers_For` INNER JOIN User USING(user_id) 
-                WHERE Registers_For.due_date < '".$curr_time."';";
+                WHERE Registers_For.due_date < '".$curr_time."';"; 
 	$tuples = mysqli_query($connect,$bills_due); 
 
     while ($one_row = mysqli_fetch_assoc($tuples))
@@ -104,7 +104,7 @@
         $d2 = date_create($curr_time);
         $days_overdue = date_diff($d1, $d2)->days;
         
-        $check_payment = "SELECT MAX(invoice_id), bill_status FROM `invoice` WHERE user_id=".$user_id." AND utility_id='".$utility_id."' AND bill_status=b'1' GROUP BY bill_status";
+        $check_payment = "SELECT MAX(invoice_id), bill_status FROM `invoice` WHERE user_id=".$user_id." AND utility_id='".$utility_id."' AND bill_status=b'1' GROUP BY bill_status"; 
         $status = mysqli_query($connect,$check_payment);
         $status = mysqli_fetch_assoc($status);
         if ($status['bill_status'])
