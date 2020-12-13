@@ -45,6 +45,9 @@
                     <li>
                         <a href="unpaid.php"> OverDue Bills </a>
                     </li>
+                    <li>
+                        <a href="View_Complaints.php"> Customer complaints </a>
+                    </li>
                 </ul>
             </div>
         </nav>

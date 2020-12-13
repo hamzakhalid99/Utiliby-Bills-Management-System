@@ -17,7 +17,7 @@
     </div>
     <hr style="border-width: 2px;">
     <br>
-        <form method = "post" enctype="multipart/form-data">
+        <form method = "post" action="multipart/form-data">
             <div class="form-row">
                 <div class="form-group col">
                     <input class="form-control form-control-lg" type = "text" placeholder = "Utility ID" name = "util_ID"> 

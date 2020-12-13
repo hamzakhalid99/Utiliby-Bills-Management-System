@@ -13,59 +13,53 @@
 <body>
 	<div class="container-fluid">
     <div class="row">
-        <h2 style="text-align: center; ">View Transactions</h2>
+        <h2 style="text-align: center; ">Unpaid Bills</h2>
     </div>
 	</div>
     <hr style="border-width: 2px;">
     <br>
-    <table class="table" style = "text-align: center; ">
-	<thead class="thead-dark">
-	    <tr>
-	        <th>User ID</th>
-	        <th>Payment ID</th>
-	        <th>Invoice ID</th>
-	        <th>Name</th>
-	        <th>Utility Name</th>
-	        <th>Package</th>
-	        <th>Amount</th>
-	        <th>Date</th>
-	    </tr>
-	</thead>
-    <?php
-    	$query = "SELECT E.user_id, T.payment_amount, T.invoice_id, T.payment_id, T.Date, E.utility_name, E.connection_type, E.name
-					FROM 
-					(SELECT * FROM User INNER JOIN (SELECT * FROM invoice INNER JOIN Utilities USING(utility_id)) AS S USING(user_id)) AS E
-					INNER JOIN 
-					(SELECT * FROM Payments INNER JOIN Invoice_Payments USING(payment_id)) AS T 
-					USING(invoice_id) ORDER BY T.Date DESC";
-		$tuples = mysqli_query($connect, $query);
-		while ($row = mysqli_fetch_assoc($tuples))
-		{
+    <table class="table" style="font-size: 20px;">
+       <thead class="thead-dark">
+      <tr>
+        <th class='font-weight-light'>User ID</th>
+        <th class='font-weight-light'>Utility ID</th>
+        <th class='font-weight-light'>Name</th>
+        <th class='font-weight-light'>Amount Unpaid</th>
+        <th class='font-weight-light'>Due Date</th>
+        <th class='font-weight-light'>Days Overdue</th>
 
-			$user_id = $row['user_id'];
-			$payment_id = $row['payment_id'];
-			$invoice_id = $row['invoice_id'];
-			$name = $row['name'];
-			$utility_name = $row['utility_name'];
-			$package = $row['connection_type'];
-			$amount = $row['payment_amount'];
-			$date = $row['Date'];
-			echo 
-			'<tr>
-	        <td>'.$user_id.'</td>
-	        <td>'.$payment_id.'</td>
-	        <td>'.$invoice_id.'</td>
-	        <td>'.$name.'</td>
-	        <td>'.$utility_name.'</td>
-	        <td>'.$package.'</td>
-	        <td>'.$amount.'</td>
-	        <td>'.$date.'</td>
-	    	</tr>';
+      </tr>
+    </thead>
+    <tbody>
+<?php
+	$bills_due = "SELECT User.user_id, Registers_For.utility_id, User.name, Registers_For.due_date, Registers_For.days_overdue, 
+				Registers_For.utility_balance 
+                FROM `Registers_For` INNER JOIN User USING(user_id) 
+                WHERE Registers_For.days_overdue>0;";
+	$tuples = mysqli_query($connect,$bills_due); 
 
-		}
+    while ($one_row = mysqli_fetch_assoc($tuples))
+    {
+    $user_id = $one_row["user_id"];
+	$utility_id = $one_row["utility_id"];
+	$name = $one_row["name"];
+	$balance = $one_row["utility_balance"];
+	$due = $one_row["due_date"];
+	$due_days = $one_row["days_overdue"];
 
-    ?>
-    </table>
+	echo 
+	"<tr>
+	<td class='font-weight-light'>".$user_id."</td>
+	<td class='font-weight-light'>".$utility_id."</td>
+	<td class='font-weight-light'>".$name."</td>
+	<td class='font-weight-light'>".-$balance."</td>
+	<td class='font-weight-light'>".$due."</td>
+	<td class='font-weight-light'>".$due_days."</td>
+	</tr>";
+    }
+?>
+</tbody>
+</table>
 </div>
 
 

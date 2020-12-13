@@ -109,29 +109,23 @@
         $status = mysqli_fetch_assoc($status);
         if ($status['bill_status'])
         {
+          $util_balance_query = "UPDATE Registers_For 
+                                SET days_overdue='".$days_overdue."'
+              WHERE user_id='".$user_id."' AND utility_id='".$utility_id."';";
+          $update2 = mysqli_query($connect, $util_balance_query);
 
         }
         else
         {
-          echo $status['MAX(invoice_id)'];
-          echo "hello";
           //getting prices
           $amount = "SELECT Utilities.fixed_monthly_price, Utilities.unit_price FROM Utilities WHERE Utilities.utility_id='".$utility_id."';";
           $tuples =  mysqli_fetch_assoc(mysqli_query($connect, $amount));
-          if ($tuples)
-          {
-            echo "1";
-          }
           $bill_amount = $tuples['fixed_monthly_price'];
 
           // //adding invoice
           $bill_query = "INSERT INTO invoice(user_id, utility_id, bill_amount, amount_received, bill_due, bill_status, bill_generation_date, date_of_payment)";
           $bill_query .= "VALUES($user_id, '$utility_id', $bill_amount, 0, $bill_amount, 1, '".$due."', NULL);";
           $bill_result = mysqli_query($connect, $bill_query);
-          if ($bill_result)
-          {
-            echo "2";
-          }
 
 
           $query2 = "SELECT * FROM Registers_For INNER JOIN (SELECT * FROM User INNER JOIN Customer USING(user_id)) AS T USING(user_id)

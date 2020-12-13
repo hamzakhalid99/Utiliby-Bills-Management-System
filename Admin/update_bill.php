@@ -1,5 +1,5 @@
 <?php
-    include "generic_layout.php";
+    #include "generic_layout.php";
     include "../DB_Connection/database_connection.php";
 
     $id = $_GET['id']; // get id through query string
@@ -16,19 +16,12 @@
         // $status = $_POST['bill_status'];
         $payment_date = $_POST['date_of_payment'];
         $gen_date = $_POST['bill_generation_date'];
-        if ($payment_date==""){
-            $edit = mysqli_query($connect, "update invoice set bill_generation_date='$gen_date', 
-            bill_due='$due',amount_received='$received',bill_amount='$bill',utility_id='$util',invoice_id='$invoice' where invoice_id='$id'");
-        }
-        else
-        {
-            $edit = mysqli_query($connect, "update invoice set bill_generation_date='$gen_date', date_of_payment='$payment_date',
-            bill_due='$due',amount_received='$received',bill_amount='$bill',utility_id='$util',invoice_id='$invoice' where invoice_id='$id'");
-        }
+        $edit = mysqli_query($connect, "update invoice set bill_generation_date='$gen_date', date_of_payment='$payment_date',
+        bill_due='$due',amount_received='$received',bill_amount='$bill',utility_id='$util',invoice_id='$invoice' where invoice_id='$id'");
+
         if ($edit) {
             mysqli_close($connect);
-            echo "Succesfully updated press sidebar to go back to previous page";
-            #header("Location:viewbill.php"); // redirects to all records page
+            header("Location:viewbill.php"); // redirects to all records page
             exit;
         } else {
             echo "Error updating record"; // display error message if not updated;
