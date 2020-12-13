@@ -33,6 +33,9 @@
                     <li>
                         <a href="transactions.php"> View Transactions </a>
                     </li>
+                     <li>
+                        <a href="View_Complaints.php"> Customer complaints </a>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -66,7 +69,7 @@
             </nav>
             <div class="container-fluid">
                 <div class="row">
-                    <h2 style="text-align: center; font-size:40px; "> Admin Page </h2>
+                    <h2 style="text-align: center; font-size:40px; "> Staff Page </h2>
                 </div>
             <hr style="border-width: 2px;">
             </div>
