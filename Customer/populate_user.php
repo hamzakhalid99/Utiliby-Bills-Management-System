@@ -24,5 +24,17 @@
 	    $write_query = "INSERT INTO User(name, cnic, contact_number, email_id, address, username, password, role, approved_bit)";
 	    $write_query .= "VALUES('$obtained_fullname', '$obtained_cnic', '$obtained_contact', '$obtained_email', '$obtained_address', '$obtained_username', '$obtained_hashed_password', '$obtained_role', $approved_bit)";
 	    $write_query_result = mysqli_query($connect, $write_query);
+
+
+	    $user_id_query = "SELECT * FROM User ORDER BY user_id DESC LIMIT 1"; // Select the very latest tuple added inside the User table (which definitely contains CUSTOMER (not a staff member, not admin))
+        $user_id_query_result = mysqli_query($connect, $user_id_query);
+
+        while ($last_tuple = mysqli_fetch_assoc($user_id_query_result))
+        {
+            $obtained_user_id = $last_tuple["user_id"];
+        }
+        $write_query = "INSERT INTO Customer(user_id, connection_type, total_discount, balance, black_list_status)";
+        $write_query .= "VALUES('$obtained_user_id', 'Residential', 0.0, 0.0, 0)";
+        $write_query_result = mysqli_query($connect, $write_query);
 	}
 ?>
