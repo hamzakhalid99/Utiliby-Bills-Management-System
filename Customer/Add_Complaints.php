@@ -35,7 +35,7 @@
                 <a href="Remove_Utility.php">Remove Service</a>
             </li>
              <li>
-               <a href="Add_Complaints.php">Add Complaint</a>
+              <a href="#">Add Complaint</a>
             </li>
 	          <li>
               <a href="#">Contact</a>
@@ -80,35 +80,35 @@
 
         <div class="container-fluid">
           <div class="row">
-            <h2 style="font-size: 50px">ADD NEW UTILITY</h2>
-           <!--  <div class="container" style="float: right;">
-              <h2 style="font-size: 20px;text-align:right;">BALANCE</h2>
-              <h2 style="font-size: 30px;text-align:right;">Unlimited</h2>
-            </div> -->
+            <h2 style="font-size: 50px">ADD COMPLAINT</h2>
           </div>
           <hr style="border-width: 2px;">
         </div>
-        <h2 class="mb-4" id="title">Select Utility</h2>
-        <hr style="border-width: 2px;">
-        <div class="container" style="padding-top: 50px">
-          <div class='row justify-content-center'>
-            <?php 
-              $query = "SELECT DISTINCT utility_name, image FROM Utilities ;";
-              $query_result = mysqli_query($connect, $query);
-              $count = mysqli_num_rows($query_result);
-              
-              for ($i = 0;$i < $count;$i++)
-              {
-
-                $tuples = mysqli_fetch_assoc($query_result);
-                $path = $tuples['image'];
-                $util_name = $tuples['utility_name'];
-                 echo "<a href='Select_Utility.php?utility=$util_name'><div class='col-sm-5 custom-column-spacing'><div class='container bg-dark custom-image-circle' style=' background-image: url(pics/" . $path . ");'></div></div></a>";
-
-              }
-              
-              ?>
-        </div>
+         <form method = "post" action="New_Complaint.php">
+            <div class="form-row">
+                <div class="form-group col">
+                    <input class="form-control form-control-lg" type = "text" placeholder = "Utility ID" name = "util_ID"> 
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col">
+                <select class="form-control form-control-lg" name = "complaint_type">
+                    <option selected disabled value hidden = "connection_1"> Choose Complaint Type </option>
+                    <option> Installation </option>
+                    <option> Service </option>
+                    <option> Personnel </option>
+                    <option> Other </option>
+                </select>
+                </div>
+            </div>
+            <div class="form-row">  
+                <div class="form-group col">      
+                    <textarea style="min-height: 100px;" class="form-control form-control-lg" placeholder = "Enter Complaint" name = "msg"></textarea>
+                </div>
+            </div>
+            <button class = "btn btn-primary" style="font-size: 20px; text-align: center;"type = "submit" name = "send_form"> Submit </button>
+        </form>
+        
       </div>
 		</div>
 

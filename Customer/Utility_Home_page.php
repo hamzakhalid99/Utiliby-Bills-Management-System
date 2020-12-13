@@ -34,7 +34,7 @@
                 <a href="Remove_Utility.php">Remove Service</a>
             </li>
              <li>
-              <a href="#">Add Complaint</a>
+              <a href="Add_Complaints.php">Add Complaint</a>
             </li>
             <li>
               <a href="#">Contact</a>
@@ -118,6 +118,7 @@
               <?php
               echo "<a href='History.php?utility_id=".$utility_id."'><div class='col-sm-5 custom-column-spacing'><div class='container bg-dark custom-image-circle'>View Bills</div></div></a>";
               echo "<a href='Pay_Bills.php?utility_id=".$utility_id."'><div class='col-sm-5 custom-column-spacing'><div class='container bg-dark custom-image-circle'>Pay Bills</div></div></a>";
+               echo "<a href='View_Complaints.php?utility_id=".$utility_id."'><div class='col-sm-5 custom-column-spacing'><div class='container bg-dark custom-image-circle'>View Complaints</div></div></a>";
               ?>
           </div>
         </div>
